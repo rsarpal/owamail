@@ -11,7 +11,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "testcafe chrome:headless Test/postAuthRequest.js"
+    "test": "testcafe chrome:headless Test/tests.js"
   },
   "author": "",
   "license": "ISC"

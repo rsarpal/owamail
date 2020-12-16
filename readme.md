@@ -1,4 +1,15 @@
 # Description
+This project is intended for Sending Email over Outlook using Microsoft Authentication Library(MSAL) and Microsoft GRAPH API endpoints.
+
+## Setup in Azure/Outlook
+ - For Sender/Reciever accounts 
+    1. Login to Microsoft Azure and setup a new Application under "Application Registration" (https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)
+
+    2. Note down clientID for your application from Azure. 
+    3. Additonally, go to Certificates & Secrets and generate a client secret for your applicaiton. Clientid and Secret is used in `class AuthStructure` to connect to Outlook.
+    4. Go to API Permission section and add request for Mail specific permissions eg Mail.Send, Mail.Read, Mail.Write, Mail.Read.Basic, Mail.Read.Basic.All, Mail.ReadWrite, User.Read.
+
+    5. Login to Azure from the Administrator Account and Grant permission to the user for all permissions requested in Step 4.
 
 
 ## Setup VSCode

@@ -1,0 +1,18 @@
+{
+  "name": "testcaferest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "form-data": "^3.0.0",
+    "request": "^2.88.2",
+    "requests": "^0.3.0",
+    "testcafe": "^1.9.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "testcafe chrome:headless Test/postAuthRequest.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

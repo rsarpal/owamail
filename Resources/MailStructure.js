@@ -4,16 +4,16 @@ import request from 'request';
 
 export default class MailStructure{
 
-    constructor(url,authToken,recipient){
+    constructor(url,authToken,recipient,subject){
 
         this.mailAttachment;
 
         this.sendMailBody = {
             'message': {
-            'subject': "Meet for lunch?",
+            'subject': subject,
             'body': {
-                'contentType': "Text",
-                'content': "The new cafeteria is open."
+                'contentType': "html",
+                'content': "<a href=https://github.com/rsarpal/owamail>Checkout github link of this project</a>"
             },
             'toRecipients': [
                 {

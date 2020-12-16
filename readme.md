@@ -18,6 +18,7 @@ This project is intended for Sending Email over Outlook using Microsoft Authenti
 3. Run Terminal inside VS Code run following commands:
     -   npm init
     -   npm install testcafe
+    -   npm install uuid
 4. On Mac "screen recording permission" needs to be granted from System Preferences
 
 ## Test Files

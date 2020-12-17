@@ -4,25 +4,23 @@ import request from 'request';
 
 export default class MailStructure{
 
-    constructor(url,authToken,recipient,subject){
-
-        this.mailAttachment;
+    constructor(url,authToken,recipient,subject,attachments){
 
         this.sendMailBody = {
             'message': {
-            'subject': subject,
-            'body': {
-                'contentType': "html",
-                'content': "<a href=https://github.com/rsarpal/owamail>Checkout github link of this project</a>"
-            },
-            'toRecipients': [
-                {
-                'emailAddress': {
-                    //address: "rsrecipient@automationwork.onmicrosoft.com"
-                    'address': recipient
-                }
-                }
-            ]
+                'subject': subject,
+                'body': {
+                    'contentType': "html",
+                    'content': "<a href=https://github.com/rsarpal/owamail>Checkout github link of this project</a>"
+                },
+                'toRecipients': [
+                    {
+                    'emailAddress': {
+                        'address': recipient
+                    }
+                    }
+                ],
+                'attachments' : attachments
             },
             'saveToSentItems': "true"
         }

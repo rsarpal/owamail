@@ -24,15 +24,18 @@ This project is intended for Sending Email over Outlook using Microsoft Authenti
 ## Test Files
 All test files are contained in Test folder and can be run using the command sepecified in the "Running Section" section.
 
+## Config File
+Config.ini file contains the url and authentication credentials which are used by the application.
+
 ## Running Test
 - From Command line using npx
-    `npx testcafe chrome:headless Test/postAuthRequest.js <--fixture "Initiate Auth And Send Email"> `
+    `npx testcafe chrome:headless Test/tests.js <--fixture "Initiate Auth And Send Email"> `
 
 - Using Package.json : add the `testcafe` command to the scripts section in 
 package.json
 
     `"scripts": {
-        "test": "testcafe chrome:headless Test/postAuthRequest.js"
+        "test": "testcafe chrome:headless Test/tests.js"
     },`
 
     And run tests by running `npm test` in command line.

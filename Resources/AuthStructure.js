@@ -28,8 +28,8 @@ export default class AuthStructure{
         if (error) throw new Error(error);
         //console.log(response.body);
         resolve(response);
-      }) 
-    })
+      }); 
+    });
   }
     
 }

@@ -1,30 +1,32 @@
-import request from 'request';
+/* eslint-disable no-undef */
 import path from 'path';
 import { v4 as uuidv4 } from 'uuid'; 
 import AuthStructure from '../Resources/AuthStructure';
+import GetEmail from '../Resources/GetEmail';
 import MailAttachment from '../Resources/MailAttachment';
 import MailStructure from '../Resources/MailStructure';
+import Property from '../Resources/PropertyRead';
 
 
-// Azure ids for "fsecure" application
-const clientId='967f2c15-88f7-4e66-a674-c5723df90083';
-const tenantId='6e240e84-dd08-4a4b-a970-539f0ff869f9';
-const clientSecret='7JC74o_j-rxPi1sKpgo6Oc0i--yoMbij4~';
 
-//uuid subjectId to make it unique
-var m_subjectId;
+// Read the Sender properties from config file
+let prop= new Property("SenderAuth");
+// Read receipient properties from config file
+let prop_recv= new Property("ReceiverAuth");
 
-/*const attachment = {
-    '@odata.type': "#microsoft.graph.fileAttachment",
-    'name': "smile",
-    'contentBytes': "R0lGODdhEAYEAA7"
-};*/
 
-fixture `Initiate Auth And Send Email`;
+fixture `Initiate Auth And Send Email`
+        .before(async ctx =>{
+            //uuid subjectId to make it unique
+            ctx.m_subjectId=uuidv4();
+        });
 
-let auth=new AuthStructure(tenantId,clientId,clientSecret);
+//Intialise Auth
+let auth=new AuthStructure(prop.tenantId,prop.clientId,prop.clientSecret);
 
 test('Initiate Auth', async t => {   
+    //console.log("PROP - " + prop.tenantId + " ; " + prop.clientId + " ; " + prop.clientSecret);
+
     var response = await auth.getAuthResponseData();
     await t
        .expect(response.statusCode).eql(200);
@@ -34,32 +36,26 @@ test('Initiate Auth', async t => {
     console.log(auth.authToken);
 });
 
-
 test('Send Email', async t => {  
-  //MailStructure  (url,authToken,recipient,uuidsubject)
-  m_subjectId=uuidv4();
-  let m= new MailStructure('https://graph.microsoft.com/v1.0/users/rstest@automationwork.onmicrosoft.com/sendMail',auth.authToken,"rstest@automationwork.onmicrosoft.com",m_subjectId,[]);
+  //MailStructure  (url,authToken,recipient,uuidsubject,attachment)
+  
+  let m= new MailStructure(auth.authToken,prop_recv.accountId,t.fixtureCtx.m_subjectId,[]);
   var response = await m.sendMail();
   await t
      .expect(response.statusCode).eql(202);
 
 });
 
-fixture `Send Email Attachment`;
+test('Verify Email', async t => {  
+    //https://graph.microsoft.com/v1.0/users/{{UserId}}/messages/?$search="subject:3b05d1a3-dbc7-41e1-a777
+    let g= new GetEmail(auth.authToken,t.fixtureCtx.m_subjectId);
+    var response = await g.readEmail();
+    await t
+       .expect(response.statusCode).eql(200);
+  
+  });
 
-test('Send Email With Attachment', async t => {
 
-  //Load Attachment
-  //let attach= new MailAttachment("../TestData/attach.txt");
-  let attach= new MailAttachment(path.join(__dirname,"/../TestData/attach.txt"));
-  attach.addAttachment();
 
-  //MailStructure  (url,authToken,recipient,uuidsubject)
-  m_subjectId=uuidv4();
-  let m= new MailStructure('https://graph.microsoft.com/v1.0/users/rstest@automationwork.onmicrosoft.com/sendMail',auth.authToken,"rstest@automationwork.onmicrosoft.com",m_subjectId,[attach.attachment]);
 
-  var response = await m.sendMail();
-  await t
-     .expect(response.statusCode).eql(202);
 
-});

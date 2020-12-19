@@ -1,15 +1,17 @@
 # Description
-This project is intended for Sending Email over Outlook using Microsoft Authentication Library(MSAL) and Microsoft GRAPH API endpoints.
+This project is intended for Sending Email and Verifying Email over Outlook using Microsoft Authentication Library(MSAL) and Microsoft GRAPH API endpoints.
 
 ## Setup in Azure/Outlook
  - For Sender/Reciever accounts 
-    1. Login to Microsoft Azure and setup a new Application under "Application Registration" (https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)
+    1. Login to Microsoft Azure and setup a new Application under "Application Registration" (https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade). Add Sender and Receiver email accounts as Owner of the application.
 
     2. Note down clientID for your application from Azure. 
     3. Additonally, go to Certificates & Secrets and generate a client secret for your applicaiton. Clientid and Secret is used in `class AuthStructure` to connect to Outlook.
     4. Go to API Permission section and add request for Mail specific permissions eg Mail.Send, Mail.Read, Mail.Write, Mail.Read.Basic, Mail.Read.Basic.All, Mail.ReadWrite, User.Read.
 
     5. Login to Azure from the Administrator Account and Grant permission to the user for all permissions requested in Step 4.
+
+    
 
 
 ## Setup VSCode
@@ -19,13 +21,14 @@ This project is intended for Sending Email over Outlook using Microsoft Authenti
     -   npm init
     -   npm install testcafe
     -   npm install uuid
+    -   npm install properties-reader
 4. On Mac "screen recording permission" needs to be granted from System Preferences
 
 ## Test Files
 All test files are contained in Test folder and can be run using the command sepecified in the "Running Section" section.
 
 ## Config File
-Config.ini file contains the url and authentication credentials which are used by the application.
+Config.ini file contains the url and authentication credentials which are used by the application. The file has categories and key=value pairs of data.
 
 ## Running Test
 - From Command line using npx

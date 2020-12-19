@@ -12,7 +12,13 @@ export default class Property{
        
         this.properties = propertiesReader(path.join(__dirname,"/../config.ini"));
 
+        //Graph API url
         this.url=this.properties.get('Url.url');
+
+        //Message content url
+        this.SendContentUrl=this.properties.get('SendContentUrl');
+
+        //Auth Ids
         this.clientId=this.properties.get(type + '.clientId');
         this.tenantId=this.properties.get(type + '.tenantId');
         this.clientSecret=this.properties.get(type + '.clientSecret');

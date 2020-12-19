@@ -10,13 +10,15 @@ import fs from 'fs'
 export default class MailAttachment{
 
     constructor(file){
+
+        //initiailise attachement property
         this.attachment={
             '@odata.type': "#microsoft.graph.fileAttachment",
             'name': "testattach",
             'contentBytes': ""
         }; 
 
-        //attchment file
+        //intitialise attchment file path
         this.file=file;
     }
 

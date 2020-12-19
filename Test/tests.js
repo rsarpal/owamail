@@ -57,5 +57,32 @@ test('Verify Email', async t => {
 
 
 
+  fixture `Send Email With Attachment And Verfiy it`
+            .before(async ctx =>{
+                //uuid subjectId to make it unique
+                ctx.m_subjectId=uuidv4();
+            });
 
+  test('Send Email With Attachment', async t => {
 
+    //Load Attachment
+    //let attach= new MailAttachment("../TestData/attach.txt");
+    let attach= new MailAttachment(path.join(__dirname,"/../TestData/attach.txt"));
+    attach.addAttachment();
+  
+    let m= new MailStructure(auth.authToken,prop_recv.accountId,t.fixtureCtx.m_subjectId,[attach.attachment]);  
+    
+    var response = await m.sendMail();
+    await t
+       .expect(response.statusCode).eql(202);
+  
+  });
+  
+  test('Verify Email With Attachment', async t => {  
+    //https://graph.microsoft.com/v1.0/users/{{UserId}}/messages/?$search="subject:3b05d1a3-dbc7-41e1-a777
+    let g= new GetEmail(auth.authToken,t.fixtureCtx.m_subjectId);
+    var response = await g.readEmail();
+    await t
+       .expect(response.statusCode).eql(200);
+  
+  });

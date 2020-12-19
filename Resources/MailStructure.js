@@ -13,12 +13,13 @@ export default class MailStructure{
 
     constructor(authToken,recipient,subject,attachments){
 
+        //initialize mail body
         this.sendMailBody = {
             'message': {
                 'subject': subject,
                 'body': {
                     'contentType': "html",
-                    'content': "<a href=https://github.com/rsarpal/owamail>Checkout github link of this project</a>"
+                    'content': ""
                 },
                 'toRecipients': [
                     {
@@ -32,6 +33,7 @@ export default class MailStructure{
             'saveToSentItems': "true"
         };
 
+        //initialize mail POST request options
         this.options = {
             'method': 'POST',
             'url': "",
@@ -42,14 +44,23 @@ export default class MailStructure{
             'body': JSON.stringify(this.sendMailBody)
         };
 
+        //initialise object to read Sender auth credentials 
         this.prop= new Property("SenderAuth");
+
+        //Set email message contents with url
+        this.sendMailBody.message.body.content="<a href=" + this.prop.SendContentUrl + ">Checkout github link of this project</a>";
+
+        //initialse the mail subject
         this.subject=subject;
     }
 
+
+    // Form the url for REST call for Graph API
     formUrl(){
         this.options.url=this.prop.url + this.prop.accountId + '/sendMail';
     }
 
+    //method to Send email to the OWA server using Graph API
     sendMail() { 
         this.formUrl();
         return new Promise((resolve, reject) => {

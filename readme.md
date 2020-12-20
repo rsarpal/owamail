@@ -3,7 +3,7 @@ This project is intended for Sending Email and Verifying Email over Outlook usin
 
 All the sent emails have a url in the message. The test sends and verifies emails with and without attachment.
 
-To create uniqueness in emails the email subject uses uuid.
+To create uniqueness in emails the email subject uses uuid. 
 
 ## Setup in Azure/Outlook
  - For Sender/Reciever accounts 
@@ -67,6 +67,9 @@ clientSecret=
 ```
 
 ## Running Test
+
+Tests are setup to run in headless mode.
+
 - From Command line using npx
     `npx testcafe chrome:headless Test/tests.js <--fixture "Initiate Auth And Send Email"> `
 
@@ -84,5 +87,24 @@ package.json
     And run tests by running `npm test` in command line.
 
 
+## Results
+
+
+
+```
+
+ Running tests in:
+ - Chrome 87.0.4280.88 / macOS 11.1.0
+
+ Initiate Auth And Send Email
+ ✓ Initiate Auth
+ ✓ Send Email
+ ✓ Verify Email
+
+ Send Email With Attachment And Verfiy it
+ ✓ Send Email With Attachment
+ ✓ Verify Email With Attachment
+
+```
 
  

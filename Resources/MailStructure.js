@@ -13,13 +13,16 @@ export default class MailStructure{
 
     constructor(authToken,recipient,subject,attachments){
 
+        //initialise object to read Sender auth credentials 
+        this.prop= new Property("SenderAuth");
+
         //initialize mail body
         this.sendMailBody = {
             'message': {
                 'subject': subject,
                 'body': {
                     'contentType': "html",
-                    'content': ""
+                    'content': "<a href=" + this.prop.sendContentUrl + ">Checkout github link of this project</a>"
                 },
                 'toRecipients': [
                     {
@@ -32,6 +35,7 @@ export default class MailStructure{
             },
             'saveToSentItems': "true"
         };
+ 
 
         //initialize mail POST request options
         this.options = {
@@ -44,12 +48,7 @@ export default class MailStructure{
             'body': JSON.stringify(this.sendMailBody)
         };
 
-        //initialise object to read Sender auth credentials 
-        this.prop= new Property("SenderAuth");
-
-        //Set email message contents with url
-        this.sendMailBody.message.body.content="<a href=" + this.prop.SendContentUrl + ">Checkout github link of this project</a>";
-
+       
         //initialse the mail subject
         this.subject=subject;
     }
@@ -64,13 +63,13 @@ export default class MailStructure{
     sendMail() { 
         this.formUrl();
         return new Promise((resolve, reject) => {
-            console.log(this.options);
+            //console.log("Send Mail -" + JSON.stringify(this.options));
             request(this.options, function (error, response) {
                 if (error) throw new Error(error);
-                console.log(response.body);
+                //console.log("Send Mail Response Status -" + response.status);
                 resolve(response);
-            }) 
-        })
+            }); 
+        });
     }
 }
   

@@ -10,6 +10,11 @@ import Property from '../Resources/PropertyRead';
 
 export default class GetEmail{
     constructor(authToken,m_subjectId){
+
+        //ID of the email message
+        this.messageId="";
+
+        //mail request options
         this.options = {
             'method': 'GET',
             'url': "",
@@ -40,8 +45,30 @@ export default class GetEmail{
                 if (error) throw new Error(error);
                 //console.log("Verify -" + response.body);
                 resolve(response);
-              }) 
+              }); 
         });
 
+    }
+
+
+    //Method to read the unique id of the email message from the message body
+    getMessageId(body){
+        this.messageId=JSON.stringify(JSON.parse(body).value[0]["id"]);
+    }
+
+    //calls the graph API and gets the attachment of the email using the message id
+    readAttachment(){
+        return new Promise((resolve, reject) => {
+
+            //attachment url 
+            // GET https://graph.microsoft.com/v1.0/users/{userid}/messages/{msgid}/attachments/
+            this.options.url=this.prop_recv.url+ this.prop_recv.accountId + '/messages/' + this.messageId + '/attachments/';
+
+            request(this.options, function (error, response) {
+                if (error) throw new Error(error);
+                //console.log("Attachment -" + response.body);
+                resolve(response);
+              });
+        });
     }
 }

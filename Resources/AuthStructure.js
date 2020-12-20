@@ -5,8 +5,10 @@ export default class AuthStructure{
 
   constructor(tenantId,clientId,clientSecret){
 
+        // stores the authtoken
         this.authToken;
 
+        // API request post options
         this.options = {
           'method': 'POST',
           'url': 'https://login.microsoftonline.com/' + tenantId + '/oauth2/v2.0/token',
@@ -22,6 +24,7 @@ export default class AuthStructure{
         };
   }
 
+  //Submit Authentication request to Graph API
   getAuthResponseData() {
     return new Promise((resolve, reject) => {
       request(this.options, function (error, response) {

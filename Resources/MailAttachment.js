@@ -29,10 +29,7 @@ export default class MailAttachment{
         var data=fs.readFileSync(this.file, {encoding:'base64', flag:'r'} );
         //console.log("Read data - " + data);
 
-        this.attachment.contentBytes= data;  
-
-        //console.log("Add Attachment - " + this.attachment);
-            
+        this.attachment.contentBytes= data;        
             
     }
 }

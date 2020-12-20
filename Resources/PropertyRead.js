@@ -10,13 +10,14 @@ import path from 'path';
 export default class Property{
     constructor(type){
        
+        //read property file
         this.properties = propertiesReader(path.join(__dirname,"/../config.ini"));
 
         //Graph API url
         this.url=this.properties.get('Url.url');
 
         //Message content url
-        this.SendContentUrl=this.properties.get('SendContentUrl');
+        this.sendContentUrl=this.properties.get('Url.sendContentUrl');
 
         //Auth Ids
         this.clientId=this.properties.get(type + '.clientId');

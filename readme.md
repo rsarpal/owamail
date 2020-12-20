@@ -22,6 +22,7 @@ All the sent emails have a url in the message. The test sends and verifies email
 3. Run Terminal inside VS Code run following commands:
     -   npm init
     -   npm install testcafe
+    -   npm install request
     -   npm install uuid
     -   npm install properties-reader
 4. On Mac "screen recording permission" needs to be granted from System Preferences
@@ -31,8 +32,9 @@ All the sent emails have a url in the message. The test sends and verifies email
  - **Resources/Libraries**: The js libraries containing classes are stored in `/Resources` folder.
     -   AuthStructure.js : Class file for authentication.
     -   MailStructure.js : Class file for defining mail structure and methods to send email.
-    -   MailAttachment.js : Class file for handling mail attachment.
+    -   MailAttachment.js : Class file for attaching mail attachments to emails being sent.
     -   PropertyReader.js : Class file to read configuration ini file
+    -   GetEmailjs : Class file to get emails from mailbox and to read email attachments.
 
  - **Test Data** : The test data attachment file is stored in `/TestData` folder.
 

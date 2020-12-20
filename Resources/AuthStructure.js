@@ -1,3 +1,9 @@
+/* 
+ * Description : This class file handles the authentication for Graph API 
+ *               
+ * Author : github - @rsarpal 
+ */
+
 import request from 'request';
 
 //Auth

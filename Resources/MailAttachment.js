@@ -1,11 +1,11 @@
-import fs from 'fs'
 
 /* 
- * Description : This class file defines the elements of the Email attachment and method to add read attachment file.
+ * Description : This class file defines the elements of the Email attachment and method to add attachment file.
  *               
  * Author : github - @rsarpal 
  */
 
+import fs from 'fs'
 
 export default class MailAttachment{
 

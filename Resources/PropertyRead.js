@@ -1,11 +1,13 @@
-import propertiesReader from 'properties-reader';
-import path from 'path';
+
 
 /* 
  * Description : This class file reads properties defined in the config file. 
  *               The config file is used to store the authentication credentials/secrets for connecting to Mail account.
  * Author : github - @rsarpal 
  */
+
+import propertiesReader from 'properties-reader';
+import path from 'path';
 
 export default class Property{
     constructor(type){

@@ -29,6 +29,7 @@ fixture `Initiate Auth And Send Email`
    test('Initiate Auth', async t => {   
       //console.log("PROP - " + prop.tenantId + " ; " + prop.clientId + " ; " + prop.clientSecret);
 
+      //Authenticate with Graph API
       var response = await auth.getAuthResponseData();
       await t
          .expect(response.statusCode).eql(200);
@@ -39,11 +40,12 @@ fixture `Initiate Auth And Send Email`
    });
 
    test('Send Email', async t => {  
-   //MailStructure  (url,authToken,recipient,uuidsubject,attachment)
    
+   //MailStructure  (authToken,recipient,uuidsubject,blankattachment)
    let m= new MailStructure(auth.authToken,prop_recv.accountId,t.fixtureCtx.m_subjectId,[]);
-   var response = await m.sendMail();
    
+   // send email
+   var response = await m.sendMail();
    await t
       .wait(3000) //wait for email to get delivered
       .expect(response.statusCode).eql(202);
@@ -51,8 +53,11 @@ fixture `Initiate Auth And Send Email`
 
    
    test('Verify Email', async t => {
+      
       //https://graph.microsoft.com/v1.0/users/{{UserId}}/messages/?$search="subject:3b05d1a3-dbc7-41e1-a777
       let g= new GetEmail(auth.authToken,t.fixtureCtx.m_subjectId);
+     
+      //Verify email from the receipient mailbox
       var response = await g.readEmail();
       await t
          .expect(response.statusCode).eql(200)
@@ -72,7 +77,7 @@ fixture `Initiate Auth And Send Email`
     //Load Attachment
     attach.addAttachment();
 
-    //Initialse MailStructure
+    //Initialse MailStructure (authToken,recipient,uuidsubject,attachment)
     let m= new MailStructure(auth.authToken,prop_recv.accountId,t.fixtureCtx.m_subjectId,[attach.attachment]);  
     
     var response = await m.sendMail();

@@ -27,7 +27,7 @@ export default class GetEmail{
         //initialise object to read Receiver auth credentials 
         this.prop_recv= new Property("ReceiverAuth");
 
-        //initialze the subject id 
+        //initialze the unique subject id (uuid)
         this.m_subjectId=m_subjectId;
 
     }

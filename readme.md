@@ -52,7 +52,7 @@ sendContentUrl=https://github.com/rsarpal/owamail
 
 #Azure ids for Sender "fsecure" application
 [SenderAuth]
-accountId=rstest@automationwork.onmicrosoft.com
+accountId=
 clientId=
 tenantId=
 clientSecret=
@@ -60,7 +60,7 @@ clientSecret=
 
 #Azure ids for Receiver "fsecure" application
 [ReceiverAuth]
-accountId=rsrecipient@automationwork.onmicrosoft.com
+accountId=
 clientId=
 tenantId=
 clientSecret=
@@ -106,3 +106,5 @@ package.json
 ```
 
  
+ # Task 2
+ -  Manual test cases are in ManualTestCase.xlsx

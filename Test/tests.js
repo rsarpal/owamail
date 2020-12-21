@@ -107,7 +107,7 @@ fixture `Initiate Auth Send Email With Attachment And Verfiy it`
       var verifyResponse = await g.readEmail();
       await t
          .expect(verifyResponse.statusCode).eql(200)
-         .expect(verifyResponse.body).contains('Checkout','Email does not contain the expected url');
+         .expect(verifyResponse.body).contains('Checkout','Email does not contain the expected text');
       
       //extract message ID
       g.getMessageId(verifyResponse.body);
@@ -117,7 +117,7 @@ fixture `Initiate Auth Send Email With Attachment And Verfiy it`
       await t
          .expect(verifyResponse.statusCode).eql(200)
          .expect(verifyResponse.body).contains('testattach','Email does not contain the expected attachment')
-         .expect(verifyResponse.body).contains(attach.attachment.contentBytes,'Email content does not match');
+         .expect(verifyResponse.body).contains(attach.attachment.contentBytes,'Email attachment content does not match');
        
   
   });

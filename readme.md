@@ -71,7 +71,8 @@ clientSecret=
 Tests are setup to run in headless mode.
 
 - From Command line using npx
-    `npx testcafe chrome:headless Test/tests.js <--fixture "Initiate Auth And Send Email"> `
+    - using fixture name `npx testcafe chrome:headless Test/tests.js --fixture "Initiate Auth And Send Email" `
+    - using test name    `npx testcafe chrome:headless Test/tests.js  -t 'Authenticate, Send Email with Attachment and Verify Email'`
 
 - Using Package.json : add the `testcafe` command to the scripts section in 
 package.json
@@ -93,17 +94,14 @@ package.json
 
 ```
 
- Running tests in:
+  Running tests in:
  - Chrome 87.0.4280.88 / macOS 11.1.0
 
- Initiate Auth And Send Email
- ✓ Initiate Auth
- ✓ Send Email
- ✓ Verify Email
+ Initiate Auth, Send and Verify Email
+ ✓ Authenticate Send Email with url and Verify Email
 
- Send Email With Attachment And Verfiy it
- ✓ Send Email With Attachment
- ✓ Verify Email With Attachment
+ Initiate Auth Send Email With Attachment And Verfiy it
+ ✓ Authenticate, Send Email with Attachment and Verify Email
 
 ```
 

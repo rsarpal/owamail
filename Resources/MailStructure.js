@@ -54,6 +54,7 @@ export default class MailStructure{
 
         //form the url 
         this.formUrl();
+        
     }
 
 

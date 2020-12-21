@@ -32,6 +32,7 @@ export default class GetEmail{
 
         //form the url 
         this.formUrl();
+        
 
     }
 

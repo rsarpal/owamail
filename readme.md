@@ -28,7 +28,7 @@ To create uniqueness in emails the email subject uses uuid.
 4. On Mac "screen recording permission" needs to be granted from System Preferences
 
 ## Test Files
- - **Test Cases**:  All test cases are contained in Test folder and can be run using the command sepecified in the "Running Section" section.
+ - **Test Cases**:  All test cases are contained in Test folder in tests.js and can be run using the command sepecified in the "Running Section" section.
  - **Resources/Libraries**: The js libraries containing classes are stored in `/Resources` folder.
     -   AuthStructure.js : Class file for authentication.
     -   MailStructure.js : Class file for defining mail structure and methods to send email.

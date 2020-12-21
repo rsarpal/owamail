@@ -13,6 +13,9 @@ let prop= new Property("SenderAuth");
 // Read receipient properties from config file
 let prop_recv= new Property("ReceiverAuth");
 
+//Intialise Auth
+let auth=new AuthStructure(prop.tenantId,prop.clientId,prop.clientSecret);
+
 //Initialize attachment
 let attach= new MailAttachment(path.join(__dirname,"/../TestData/attach.txt"));
 
@@ -23,8 +26,7 @@ fixture `Initiate Auth And Send Email`
             ctx.m_subjectId=uuidv4();
         });
 
-   //Intialise Auth
-   let auth=new AuthStructure(prop.tenantId,prop.clientId,prop.clientSecret);
+
 
    test('Initiate Auth', async t => {   
       //console.log("PROP - " + prop.tenantId + " ; " + prop.clientId + " ; " + prop.clientSecret);
@@ -47,8 +49,8 @@ fixture `Initiate Auth And Send Email`
    // send email
    var response = await m.sendMail();
    await t
-      .wait(3000) //wait for email to get delivered
-      .expect(response.statusCode).eql(202);
+      .expect(response.statusCode).eql(202)
+      .wait(3000); //wait for email to get delivered
    });
 
    
@@ -82,8 +84,8 @@ fixture `Initiate Auth And Send Email`
     
     var response = await m.sendMail();
     await t
-       .wait(3000) //wait for email to get delivered
-       .expect(response.statusCode).eql(202);
+       .expect(response.statusCode).eql(202)
+       .wait(3000); //wait for email to get delivered
   
   });
   

@@ -30,6 +30,9 @@ export default class GetEmail{
         //initialze the unique subject id (uuid)
         this.m_subjectId=m_subjectId;
 
+        //form the url 
+        this.formUrl();
+
     }
 
     // Form the url for REST call for Graph API
@@ -39,7 +42,7 @@ export default class GetEmail{
 
     //method to Get email from the OWA server using Graph API
     readEmail(){
-        this.formUrl();
+        
         return new Promise((resolve, reject) => {
             request(this.options, function (error, response) {
                 if (error) throw new Error(error);

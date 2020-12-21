@@ -51,6 +51,9 @@ export default class MailStructure{
        
         //initialse the mail subject
         this.subject=subject;
+
+        //form the url 
+        this.formUrl();
     }
 
 
@@ -61,7 +64,7 @@ export default class MailStructure{
 
     //method to Send email to the OWA server using Graph API
     sendMail() { 
-        this.formUrl();
+        
         return new Promise((resolve, reject) => {
             //console.log("Send Mail -" + JSON.stringify(this.options));
             request(this.options, function (error, response) {

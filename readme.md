@@ -50,7 +50,7 @@ It defines below attribues.
 url=https://graph.microsoft.com/v1.0/users/
 sendContentUrl=https://github.com/rsarpal/owamail
 
-#Azure ids for Sender "fsecure" application
+#Azure ids for Sender application
 [SenderAuth]
 accountId=
 clientId=
@@ -58,7 +58,7 @@ tenantId=
 clientSecret=
 
 
-#Azure ids for Receiver "fsecure" application
+#Azure ids for Receiver application
 [ReceiverAuth]
 accountId=
 clientId=
